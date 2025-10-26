@@ -3,5 +3,4 @@ python-dotenv
 Pillow
 requests
 beautifulsoup4
-Flask
 urllib3
