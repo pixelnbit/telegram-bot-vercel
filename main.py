@@ -12,9 +12,18 @@ load_dotenv()
 BOT_TOKEN = os.getenv('BOT_TOKEN')
 CHANNEL_USERNAME = os.getenv('CHANNEL_USERNAME', 'victusxgod')
 OWNER_URL = os.getenv('OWNER_URL', 'https://t.me/victus_xd')
-WORKERS = int(os.getenv('WORKERS', 16))
-OWNER_ID_1 = int(os.getenv('OWNER_ID_1'))
-OWNER_ID_2 = int(os.getenv('OWNER_ID_2'))
+WORKERS = int(os.getenv('WORKERS', '16'))
+OWNER_ID_1 = int(os.getenv('OWNER_ID_1', '0'))
+OWNER_ID_2 = int(os.getenv('OWNER_ID_2', '0'))
+
+if not BOT_TOKEN:
+    print("❌ ERROR: BOT_TOKEN environment variable is not set!")
+    print("Please set BOT_TOKEN in Render dashboard: Environment → Add Environment Variable")
+    sys.exit(1)
+
+if OWNER_ID_1 == 0 or OWNER_ID_2 == 0:
+    print("⚠️  WARNING: OWNER_ID_1 or OWNER_ID_2 not set. Admin commands will not work!")
+    print("Please set these in Render dashboard: Environment → Add Environment Variable")
 
 bot = telebot.TeleBot(BOT_TOKEN, num_threads=WORKERS)
 user_manager = UserManager()
